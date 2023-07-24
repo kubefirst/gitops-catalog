@@ -4,16 +4,46 @@ metadata:
   name: kratix
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: '10'
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/syntasso/kratix'
-    path: distribution/single-cluster
+    repoURL: "https://github.com/syntasso/kratix.git"
+    path: charts/kratix
     targetRevision: HEAD
+    helm:
+      values: |
+        clusters:
+        # Registers the current cluster as a worker for Kratix
+        # Points at GitStateStore by default
+        - name: platform
+          namespace: kratix-platform-system
+          labels:
+            type: platform
+          stateStoreRef:
+             name: default
+             kind: GitStateStore
+        stateStores:
+        # Default BucketStateStore is the MinIO provided by KubeFirst
+        - kind: BucketStateStore
+          name: default
+          namespace: default
+          secretRef:
+            name: bss-default-default
+          endpoint: minio.minio.svc.cluster.local:9000
+          insecure: true
+          bucket: kratix
+        # Default GitStateStore is the repo created by KubeFirst
+        - kind: GitStateStore
+          name: default
+          namespace: kratix-platform-system
+          secretRef:
+            name: default-git-secret
+          url: https://github.com/abangser/gitops # todo: This needs to be parametrised!
+          path: registry/kratix
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: kratix
+    server: "https://kubernetes.default.svc"
+    namespace: kratix-platform-system
   syncPolicy:
     automated:
       prune: true

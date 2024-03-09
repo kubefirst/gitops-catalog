@@ -14,7 +14,7 @@ spec:
   source:
     chart: datadog
     repoURL: https://helm.datadoghq.com
-    targetRevision: 3.1.10
+    targetRevision: 3.57.3
     helm:
       releaseName: datadog
       values: |

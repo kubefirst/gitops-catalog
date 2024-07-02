@@ -154,6 +154,13 @@ apps:
     description: "StormForge provides automated Kubernetes resource management for platform engineering teams to continuously rightsize workloads with HPA compatibility."
     category: Architecture
 
+  - name: supabase
+    displayName: Supabase
+    website: "https://www.supabase.com/"
+    imageUrl: "https://raw.githubusercontent.com/kubefirst/gitops-catalog/main/logos/supabase.svg"
+    description: "The open source Firebase alternative."
+    category: Database
+
   - name: testkube
     displayName: Testkube
     website: "https://github.com/kubeshop/testkube"

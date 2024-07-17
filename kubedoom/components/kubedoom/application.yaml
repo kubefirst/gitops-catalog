@@ -13,7 +13,7 @@ spec:
   project: <PROJECT>
   source:
     chart: kubedoom
-    repoURL: https://christianknell.github.io/helm-charts
+    repoURL: https://charts.christianhuth.de
     targetRevision: 1.0.0
     helm:
       releaseName: my-release

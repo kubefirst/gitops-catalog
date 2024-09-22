@@ -14,6 +14,13 @@ apps:
     description: "A Kubernetes controller & set of CRDs which provide advanced deployment capabilities such as blue-green, canary, canary analysis, experimentation, & progressive delivery features to Kubernetes."
     category: CI/CD
 
+  - name: cilium
+    displayName: Cilium
+    website: "https://cilium.io/"
+    imageUrl: "https://raw.githubusercontent.com/kubefirst/gitops-catalog/main/logos/cilium.svg"
+    description: "Cilium is an open-source, cloud-native tool for managing, securing, and monitoring network connectivity between workloads, powered by the innovative Kernel technology eBPF."
+    category: Observability 
+
   - name: cluster-autoscaler-civo
     displayName: Civo Cluster Autoscaler
     website: "https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler"

@@ -1,0 +1,31 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: <CLUSTER_NAME>-perfectscale
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: perfectscale
+    name: <CLUSTER_DESTINATION>
+  project: <PROJECT>
+  source:
+    chart: exporter
+    repoURL: https://perfectscale-io.github.io
+    targetRevision: v1.0.39
+    helm:
+      releaseName: perfectscale
+      values: |
+        secret:
+          create: false
+          name: "perfectscale-secret"
+        settings:
+          clusterName: <CLUSTER_NAME>
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

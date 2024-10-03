@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: <CLUSTER_NAME>-cluster-autoscaler-aws-components
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: '100'
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: <GITOPS_REPO_URL>
+    path: <REGISTRY_PATH>/components/cluster-autoscaler-aws
+    targetRevision: HEAD
+  destination:
+    name: in-cluster
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

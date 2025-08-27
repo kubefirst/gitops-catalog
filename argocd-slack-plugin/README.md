@@ -16,7 +16,7 @@ This plugin enables Slack notifications for Argo CD application events. It confi
 
 ## Required Vault Configuration
 
-The gitops catalog implementation will add these 2 secrets to your Vault, 
+The gitops catalog implementation will add these 2 secrets to your Vault,
 and bind them to your app using external secrets. For local development you
 can add these secrets manually.
 
@@ -36,9 +36,11 @@ Note: While the channel name isn't sensitive, it's stored in Vault as a user inp
 ## Configuration
 
 ### Default Channel
+
 The default Slack channel is configured via the `SLACK_CHANNEL` value in Vault. All notifications will be sent to this channel by default.
 
 ### Custom Subscriptions
+
 You can configure per-application notifications by adding annotations:
 
 ```yaml
@@ -53,6 +55,7 @@ metadata:
 ## Notification Events
 
 The following events trigger notifications:
+
 - `on-created`: Application created
 - `on-deleted`: Application deleted  
 - `on-deployed`: Application successfully deployed
@@ -64,10 +67,13 @@ The following events trigger notifications:
 ## Customization
 
 ### Modifying Templates
+
 Edit the `argocd-notifications-cm` ConfigMap to customize notification templates and add new ones.
 
 ### Adding New Triggers
+
 Add new triggers in the ConfigMap following the pattern:
+
 ```yaml
 trigger.on-your-event: |
   - when: your.condition
@@ -77,16 +83,19 @@ trigger.on-your-event: |
 ## Troubleshooting
 
 Check the notification controller logs:
+
 ```bash
 kubectl logs -n argocd deployment/argocd-notifications-controller
 ```
 
 Verify the secret is created:
+
 ```bash
 kubectl get secret -n argocd argocd-notifications-secret
 ```
 
 Test notifications:
+
 ```bash
 kubectl exec -n argocd deployment/argocd-notifications-controller -- \
   /app/argocd-notifications template notify app-sync-succeeded <app-name> --recipient slack:<channel>

@@ -22,7 +22,7 @@ apps:
         label: Slack OAuth token or webhook URL
         env: SLACK_TOKEN
       - name: SLACK_CHANNEL
-        label: Slack channel name (e.g., #deployments)
+        label: Slack channel name (e.g., #deployments)  # deployments
         env: SLACK_CHANNEL
     imageUrl: "https://raw.githubusercontent.com/konstructio/gitops-catalog/main/logos/argocd-slack-plugin.svg"
     description: "Enable Slack notifications for Argo CD application events including sync status, health changes, and deployment updates."

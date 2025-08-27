@@ -8,7 +8,7 @@ data:
   # Slack service configuration
   service.slack: |
     token: $slack-token
-    
+
   # Default subscriptions
   defaultSubscriptions: |
     - recipients:
@@ -22,7 +22,7 @@ data:
       - on-sync-running
       - on-sync-status-unknown
       - on-sync-succeeded
-    
+
   # Notification templates
   template.app-created: |
     email:
@@ -48,7 +48,7 @@ data:
             }
           ]
         }]
-        
+
   template.app-deleted: |
     email:
       subject: Application {{.app.metadata.name}} has been deleted.
@@ -67,7 +67,7 @@ data:
             }
           ]
         }]
-        
+
   template.app-deployed: |
     email:
       subject: New version of an application {{.app.metadata.name}} is up and running.
@@ -92,7 +92,7 @@ data:
             }
           ]
         }]
-        
+
   template.app-health-degraded: |
     email:
       subject: Application {{.app.metadata.name}} has degraded.
@@ -118,7 +118,7 @@ data:
             }
           ]
         }]
-        
+
   template.app-sync-failed: |
     email:
       subject: Failed to sync application {{.app.metadata.name}}.
@@ -143,7 +143,7 @@ data:
             }
           ]
         }]
-        
+
   template.app-sync-running: |
     email:
       subject: Start syncing application {{.app.metadata.name}}.
@@ -168,7 +168,7 @@ data:
             }
           ]
         }]
-        
+
   template.app-sync-succeeded: |
     email:
       subject: Application {{.app.metadata.name}} has been successfully synced.
@@ -193,36 +193,36 @@ data:
             }
           ]
         }]
-        
+
   # Triggers
   trigger.on-created: |
     - when: true
       send: [app-created]
-      
+
   trigger.on-deleted: |
     - when: app.metadata.deletionTimestamp != nil
       send: [app-deleted]
-      
+
   trigger.on-deployed: |
     - when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
       send: [app-deployed]
-      
+
   trigger.on-health-degraded: |
     - when: app.status.health.status == 'Degraded'
       send: [app-health-degraded]
-      
+
   trigger.on-sync-failed: |
     - when: app.status.operationState.phase in ['Error', 'Failed']
       send: [app-sync-failed]
-      
+
   trigger.on-sync-running: |
     - when: app.status.operationState.phase in ['Running']
       send: [app-sync-running]
-      
+
   trigger.on-sync-status-unknown: |
     - when: app.status.sync.status == 'Unknown'
       send: [app-sync-status-unknown]
-      
+
   trigger.on-sync-succeeded: |
     - when: app.status.operationState.phase in ['Succeeded']
       send: [app-sync-succeeded]

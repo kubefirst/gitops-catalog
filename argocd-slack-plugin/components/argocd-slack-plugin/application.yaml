@@ -1,0 +1,26 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: <CLUSTER_NAME>-argocd-slack-plugin
+  namespace: argocd
+  annotations:
+    kubefirst.konstruct.io/application-name: argocd-slack-plugin
+    kubefirst.konstruct.io/source: catalog-templates
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argocd
+    name: <CLUSTER_DESTINATION>
+  project: <PROJECT>
+  source:
+    repoURL: <GITOPS_REPO_URL>
+    path: <REGISTRY_PATH>/components/argocd-slack-plugin
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false  # argocd namespace should already exist

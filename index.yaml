@@ -14,6 +14,20 @@ apps:
     description: "A Kubernetes controller & set of CRDs which provide advanced deployment capabilities such as blue-green, canary, canary analysis, experimentation, & progressive delivery features to Kubernetes."
     category: CI/CD
 
+  - name: argocd-slack-plugin
+    displayName: Argo CD Slack Notifications
+    website: "https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/"
+    secretKeys:
+      - name: SLACK_TOKEN
+        label: Slack OAuth token or webhook URL
+        env: SLACK_TOKEN
+      - name: SLACK_CHANNEL
+        label: Slack channel name (e.g., deployments)
+        env: SLACK_CHANNEL
+    imageUrl: "https://raw.githubusercontent.com/konstructio/gitops-catalog/main/logos/argocd-slack-plugin.svg"
+    description: "Enable Slack notifications for Argo CD application events including sync status, health changes, and deployment updates."
+    category: CI/CD
+
   - name: cilium
     displayName: Cilium
     website: "https://cilium.io/"

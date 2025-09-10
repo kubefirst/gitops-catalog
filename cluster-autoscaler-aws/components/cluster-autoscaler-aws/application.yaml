@@ -8,6 +8,8 @@ metadata:
     argocd.argoproj.io/sync-wave: '20'
     kubefirst.konstruct.io/application-name: cluster-autoscaler-aws
     kubefirst.konstruct.io/source: catalog-templates
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: <PROJECT>
   source:

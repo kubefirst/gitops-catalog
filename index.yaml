@@ -234,30 +234,6 @@ apps:
     description: "The open source Firebase alternative."
     category: Database
 
-  - name: testkube
-    displayName: Testkube
-    website: "https://github.com/kubeshop/testkube"
-    imageUrl: "https://raw.githubusercontent.com/konstructio/gitops-catalog/main/logos/testkube.svg"
-    description: "Testkube is a Kubernetes-native testing framework that allows you to automate the executions of your existing testing tools inside your Kubernetes cluster."
-    category: Testing
-    secretKeys:
-      - name: API_KEY
-        label: Testkube API Key
-        env: TESTKUBE_APP_KEY
-      - name: ORG_ID
-        label: Testkube Org ID
-        env: TESTKUBE_ORG_ID
-      - name: ENV_ID
-        label: Testkube Environment ID
-        env: TESTKUBE_ENV_ID
-
-  - name: tracetest
-    displayName: Tracetest
-    website: "https://github.com/kubeshop/tracetest"
-    imageUrl: "https://raw.githubusercontent.com/konstructio/gitops-catalog/main/logos/tracetest.svg"
-    description: "Tracetest uses your existing OpenTelemetry traces to power trace-based testing with assertions against your trace data at every point of the request transaction."
-    category: Testing
-
   - name: typesense
     displayName: TypeSense
     website: "https://github.com/typesense/typesense"

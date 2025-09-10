@@ -4,6 +4,11 @@ kind: Application
 metadata:
   name: <CLUSTER_NAME>-grapple-solution-framework
   namespace: argocd
+  annotations:
+    kubefirst.konstruct.io/application-name: grapple-solution-framework
+    kubefirst.konstruct.io/source: catalog-templates
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: <PROJECT>
   source:
